@@ -1,21 +1,31 @@
-# 1. Calculamos los hallazgos clave
-fuga_total = df['Churn'].value_counts(normalize=True)['Yes'] * 100
-fuga_mes_a_mes = df[df['Contract'] == 'Month-to-month']['Churn'].value_counts(normalize=True)['Yes'] * 100
-fuga_sin_soporte = df[df['TechSupport'] == 'No']['Churn'].value_counts(normalize=True)['Yes'] * 100
+# Análisis de Retención de Clientes (Telco Churn) 🚀
 
-# 2. Imprimimos el Resumen Ejecutivo
-print("-" * 50)
-print("📝 RESUMEN EJECUTIVO PARA EL PORTAFOLIO")
-print("-" * 50)
-print(f"📊 Tasa General de Fuga: {fuga_total:.2f}%")
-print(f"🚩 Alerta Roja: Los clientes con contrato 'Mes a Mes' se fugan un {fuga_mes_a_mes:.2f}%.")
-print(f"🛠️ Oportunidad: Los clientes sin Soporte Técnico tienen una fuga del {fuga_sin_soporte:.2f}%.")
-print("-" * 50)
+Este proyecto utiliza Ciencia de Datos para identificar por qué los clientes de una empresa de telecomunicaciones cancelan sus servicios y propone estrategias basadas en datos para mejorar la retención.
 
-# 3. Una última visualización de impacto: Distribución de antigüedad
-plt.figure(figsize=(10, 5))
-sns.histplot(data=df, x='tenure', hue='Churn', kde=True, element="step", palette='crest')
-plt.title('Distribución de la Antigüedad de los Clientes (Tenure)')
-plt.xlabel('Meses en la Compañía')
-plt.ylabel('Cantidad de Clientes')
-plt.show()
+## 📊 Hallazgos Principales (Insights)
+Basado en el Análisis Exploratorio de Datos (EDA) realizado:
+- **Contratos Críticos:** Los clientes con contratos **mes a mes** representan el mayor foco de fuga (más del 40% de abandono).
+- **Servicios de Apoyo:** La falta de **Soporte Técnico** y **Seguridad Online** está fuertemente correlacionada con la salida de clientes.
+- **Fidelización:** Existe una relación inversa entre la antigüedad (`tenure`) y la fuga; los primeros 6 meses son críticos para asegurar la lealtad del cliente.
+- **Métodos de Pago:** Los clientes que utilizan cheque electrónico tienen una tasa de abandono significativamente mayor que aquellos con pagos automatizados.
+
+## 🛠️ Stack Tecnológico
+- **Sistema Operativo:** Arch Linux 🐧
+- **Lenguaje:** Python 3.14
+- **Entorno:** Virtualenv (venv)
+- **Librerías Principales:** Pandas, Seaborn, Matplotlib, Kagglehub.
+
+## 📂 Estructura del Proyecto
+- `analisis_churn.ipynb`: Notebook principal con el análisis visual y limpieza de datos.
+- `requirements.txt`: Lista de dependencias para replicar el entorno.
+- `.gitignore`: Configuración para mantener el repositorio limpio de archivos innecesarios.
+
+## 🚀 Cómo ejecutarlo
+1. Clonar el repositorio.
+2. Crear entorno virtual: `python -m venv venv`.
+3. Activar entorno: `source venv/bin/activate`.
+4. Instalar dependencias: `pip install -r requirements.txt`.
+5. Ejecutar el notebook en VS Code.
+
+---
+*Proyecto en desarrollo - Siguiente paso: Implementación de Modelos de Machine Learning para predicción de fuga.*
